@@ -1,0 +1,54 @@
+{
+  "name": "mobile-web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@react-google-maps/api": "^2.7.0",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.26.0",
+    "browser-image-compression": "^1.0.17",
+    "flatlist-react": "^1.5.0",
+    "google-maps": "^4.3.3",
+    "google-maps-react": "^2.0.6",
+    "react": "^17.0.2",
+    "react-chat-theme": "^1.0.7",
+    "react-dom": "^17.0.2",
+    "react-google-maps": "^9.4.5",
+    "react-image-zoom-pan": "^0.3.1",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "^5.0.1",
+    "react-slick": "^0.28.1",
+    "slick-carousel": "^1.8.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
+    "react-refresh": "^0.11.0"
+  }
+}

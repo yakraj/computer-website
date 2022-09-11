@@ -1,0 +1,86 @@
+#productArchive {
+  width: 100%;
+  overflow: hidden;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 2px solid grey;
+  border-radius: 15px;
+  margin-top: 5px;
+}
+.productImage {
+  height: 80%;
+  width: 100%;
+  background-size: cover;
+  background-position: center top;
+}
+.bottomInfo {
+  width: 100%;
+  border-top: 2px solid rgba(99, 95, 95, 0.452);
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.productPrice {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: grey;
+}
+.productTitle {
+  margin: 0;
+  color: grey;
+  font-size: 0.7rem;
+  font-weight: bold;
+  white-space: nowrap;
+  width: 90%;
+  overflow: hidden;
+}
+.productdetail {
+  display: flex;
+  width: 85%;
+  flex-direction: column;
+}
+.productinfo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* flex-direction: column; */
+}
+.heart {
+  height: 25px;
+  width: 25px;
+  background: rgba(255, 255, 255, 0.582);
+  border-radius: 50%;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  box-shadow: 0 0 10px rgba(0, 0, 0);
+}
+.addresslabel {
+  font-size: 11px;
+  color: grey;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inherit;
+}
+.locationContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.productmarksold {
+  padding: 5px;
+  margin: 5px;
+  background: green;
+  width: 70%;
+  border-radius: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
+}

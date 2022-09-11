@@ -1,0 +1,137 @@
+.landing-landscape {
+  background-image: url("../../../../assets/marcket.jpg");
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+  height: 85vh;
+}
+
+.recommended-ads {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  align-items: flex-start;
+}
+.recommended-ads h1 {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: rgb(68, 67, 67);
+}
+
+.Recommended-corusel {
+  width: 95vw;
+  overflow-x: scroll;
+  display: -webkit-box;
+  scroll-behavior: smooth;
+  /* background-color: red; */
+  /* display: flex; */
+}
+.recommended-archive {
+  margin-right: 5px;
+  display: flex;
+  border: 1px solid grey;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.recommended-thumbnail {
+  height: 120px;
+  width: 170px;
+  /* background-image: url("https://picsum.photos/200/300"); */
+  background-size: cover;
+  background-position: center center;
+}
+.recommended-info {
+  padding-right: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 250px;
+  justify-content: space-between;
+}
+.recommended-titlp {
+  padding: 5px;
+}
+.recommended-price {
+  color: blue;
+  font-family: "Times New Roman", Times, serif;
+}
+.recommended-titlp h2 {
+  margin: 0px;
+  font-size: 1.05rem;
+  text-align: left;
+}
+.recommended-archive .recommended-description {
+  width: 250px;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  color: grey;
+  line-height: 18px;
+  max-height: 36px;
+  margin: 0;
+  overflow: hidden;
+}
+.recommended-location {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.recommended-title {
+  font-family: Arial, Helvetica, sans-serif;
+  color: grey;
+}
+.recommended-location p {
+  text-align: left;
+  margin-left: 5px;
+  margin: 0;
+  color: grey;
+  width: 200px;
+  line-height: 1em;
+  max-height: 1em;
+  overflow: hidden;
+}
+
+.recommended-first-arrow:hover {
+  cursor: pointer;
+  background: blue;
+}
+.recommended-first-arrow {
+  position: absolute;
+  left: 0;
+  opacity: 0.8;
+  margin-top: 40px;
+  transform: rotate(90deg);
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease-out;
+}
+
+.recommended-last-arrow:hover {
+  cursor: pointer;
+  background: blue;
+}
+.recommended-last-arrow {
+  position: absolute;
+  right: 0;
+  opacity: 0.8;
+  margin-top: 40px;
+  transform: rotate(-90deg);
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease-out;
+}
+
+.Recommended-corusel::-webkit-scrollbar {
+  display: none;
+}

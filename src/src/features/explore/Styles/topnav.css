@@ -1,0 +1,77 @@
+.Navigation-container {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.nav-leftside {
+  display: flex;
+  align-items: center;
+}
+
+.Catogery-text {
+  margin: 0;
+  margin-left: 15px;
+  margin-right: 15px;
+  /* padding: 10px; */
+  color: grey;
+}
+
+.searchBar {
+  display: flex;
+  width: 40vw;
+  padding: 10px;
+  box-sizing: border-box;
+  align-items: center;
+  border: 1px solid grey;
+  border-radius: 50px;
+}
+
+.searchBar input {
+  font-size: 1.2rem;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.nav-rightside {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+}
+.subnavigation {
+  border-top: 1px solid rgba(128, 128, 128, 0.493);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.493);
+  /* border-bottom: 1px solid grey; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.subnavigation div {
+  width: 70%;
+  display: flex;
+  overflow: hidden;
+  /* background-color: red; */
+  justify-content: space-around;
+}
+.subnavigation div p:hover {
+  height: 100%;
+  text-align: center;
+  color: #fff;
+  background-color: rgba(128, 128, 128, 0.322);
+  cursor: pointer;
+}
+.subnavigation div p {
+  margin: 0px;
+  padding: 10px;
+  height: 100%;
+  font-weight: bold;
+  transition: all 0.3s ease-out;
+  color: grey;
+}
