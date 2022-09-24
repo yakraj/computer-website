@@ -13,7 +13,7 @@ export const RegularArchive = ({ x, i, heart }) => {
       >
         <div
           style={{
-            backgroundImage: `url(${x.thumbnail})`,
+            backgroundImage: `url(https://storage.googleapis.com/post-thumbnail/${x.thumbnail})`,
             width: "200px",
             height: "150px",
           }}
