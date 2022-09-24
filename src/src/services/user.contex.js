@@ -24,6 +24,7 @@ export const UserContext = React.createContext();
 export const UserContextProvider = ({ children }) => {
   const navigate = useNavigate();
   const [username, setusername] = useState("");
+  const [topNavHeight, ontopNavHeight] = useState(0);
   const [loadinguiads, setloadinguiads] = useState(false);
   const [useruiAds, setuseuiAds] = useState([]);
   const [signedin, setSignedin] = useState(false);
@@ -212,7 +213,7 @@ export const UserContextProvider = ({ children }) => {
     setSignedin(false);
     setfavourites([]);
     // removeAllStoreData();
-    console.log("function executed");
+    window.alert("Signed you out, successfully.");
   };
 
   const DeleteUserAd = (adid, user) => {
@@ -602,6 +603,8 @@ export const UserContextProvider = ({ children }) => {
         loadreg,
         lodLogin,
         settinguploc,
+        topNavHeight,
+        ontopNavHeight,
       }}
     >
       {children}

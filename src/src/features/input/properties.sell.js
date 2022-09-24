@@ -357,69 +357,72 @@ export const InputSell = (props) => {
   return (
     <>
       <Topbar title="Sell Your Product " />
-
-      <div className="properties-body-container">
-        <div>
-          <h3 className="screen-title-tag bold-tag">
-            Include Some Information
-          </h3>
-          {catogery && (
-            <div className="cato-sub-hub">
-              <h3>Catogery: </h3>
-              <h4>{catogery}</h4>
-            </div>
-          )}
-          {subcatogery && (
-            <div className="cato-sub-hub">
-              <h3>Sub-catogery: </h3>
-              <h4>{subcatogery}</h4>
-            </div>
-          )}
-
-          {RenderItems.map((ren, i) => {
-            return (
-              <SectionPart
-                key={i}
-                property={RenderItems[i].property}
-                keytype={RenderItems[i].keytype}
-                placeholder={RenderItems[i].placeholder}
-                find={eval(RenderItems[i].find)}
-                title={RenderItems[i].title}
-                maxLength={
-                  RenderItems[i].maxLength ? RenderItems[i].maxLength : null
-                }
-                SetOn={eval(RenderItems[i].SetOn)}
-                items={RenderItems[i].items}
-                Item={RenderItems[i].Item}
-                labelDesc={RenderItems[i].labelDesc}
-              />
-            );
-          })}
-          <Link
-            state={{
-              price: price,
-
-              RenderItems: null,
-            }}
-            style={{ textDecoration: "none" }}
-            to="/important-info"
-          >
-            <div
-              className="update-button next-button-properties"
-              // tblC={bg.green}
-              touchable
-              width="100%"
-              padd={10}
-              // bcC={bg.skyblue}
-              border="1px grey"
-              borR={5}
-              marT={10}
-            >
-              <h3 size={25} weight="bold">
-                Next
+      <div className="sell-catogery-container">
+        <div className="sell-catogery-content">
+          <div className="properties-body-container">
+            <div>
+              <h3 className="screen-title-tag bold-tag">
+                Include Some Information
               </h3>
+              {catogery && (
+                <div className="cato-sub-hub">
+                  <h3>Catogery: </h3>
+                  <h4>{catogery}</h4>
+                </div>
+              )}
+              {subcatogery && (
+                <div className="cato-sub-hub">
+                  <h3>Sub-catogery: </h3>
+                  <h4>{subcatogery}</h4>
+                </div>
+              )}
+
+              {RenderItems.map((ren, i) => {
+                return (
+                  <SectionPart
+                    key={i}
+                    property={RenderItems[i].property}
+                    keytype={RenderItems[i].keytype}
+                    placeholder={RenderItems[i].placeholder}
+                    find={eval(RenderItems[i].find)}
+                    title={RenderItems[i].title}
+                    maxLength={
+                      RenderItems[i].maxLength ? RenderItems[i].maxLength : null
+                    }
+                    SetOn={eval(RenderItems[i].SetOn)}
+                    items={RenderItems[i].items}
+                    Item={RenderItems[i].Item}
+                    labelDesc={RenderItems[i].labelDesc}
+                  />
+                );
+              })}
+              <Link
+                state={{
+                  price: price,
+
+                  RenderItems: null,
+                }}
+                style={{ textDecoration: "none" }}
+                to="/important-info"
+              >
+                <div
+                  className="update-button next-button-properties"
+                  // tblC={bg.green}
+                  touchable
+                  width="100%"
+                  padd={10}
+                  // bcC={bg.skyblue}
+                  border="1px grey"
+                  borR={5}
+                  marT={10}
+                >
+                  <h3 size={25} weight="bold">
+                    Next
+                  </h3>
+                </div>
+              </Link>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
     </>

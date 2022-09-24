@@ -30,6 +30,7 @@ import { UserContext } from "./../../services/user.contex";
 import { SearchContext } from "./../../services/search.context";
 import { Gmap } from "./../../features/GoogleMap/mapapi";
 import { useNavigate } from "react-router-dom";
+import { ProductScreen } from "../../features/product/product.web";
 export const RouterApp = () => {
   const navigate = useNavigate();
   const {
@@ -179,13 +180,14 @@ export const RouterApp = () => {
           <Route path="/verify-otp" element={<VerifyOTP />} />
           <Route path="/register-user" element={<RegisterUser />} />
           <Route path="/search-result" element={<SearchResult />} />
+          <Route path="/product-screen" element={<ProductScreen />} />
           {/* <Route pat
 h="contact" element={ <Contact/> } /> */}
         </Routes>
       ) : (
         <LocPopup />
       )}
-      <BottomNav />
+      {/* <BottomNav /> */}
     </div>
   );
 };

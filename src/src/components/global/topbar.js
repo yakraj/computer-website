@@ -18,9 +18,18 @@ export const Topbar = ({ title, bcC, logout }) => {
     }
   };
   return (
-    <div style={{ background: bcC ? bcC : "#84a3a090" }} className="topbar">
+    <div className="topbar">
       {/* this is leftside */}
+
       <div className="topbarleft">
+        <Link style={{ textDecoration: "none" }} to="/">
+          <img
+            style={{ marginRight: "10px", marginTop: "4px" }}
+            width="30px"
+            alt="brand logo"
+            src={require("../../../assets/logo.png")}
+          />
+        </Link>
         <img
           onClick={() => {
             navigate(-1);

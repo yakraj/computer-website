@@ -17,42 +17,51 @@ export const SellSubCatogery = (props) => {
   return mapCat ? (
     <>
       <Topbar title={mapCat}></Topbar>
+      <div className="sell-catogery-container">
+        <div className="sell-catogery-content">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div className="subcatogery-container">
+              {Cato.map((pro, i) => {
+                return (
+                  <Link
+                    key={i}
+                    onClick={() =>
+                      cotogeryJoiner(
+                        catogery,
+                        Cato[i].title,
+                        Cato[i].superCatogery
+                      )
+                    }
+                    style={{ textDecoration: "none" }}
+                    to={
+                      Cato[i].to === "skip" ? "/important-info" : "/input-sell"
+                    }
+                    state={{
+                      catogery: catogery,
+                      subcatogery: Cato[i].title,
+                      RenderItems: Cato[i].RenderItems,
+                      price: price,
+                    }}
+                  >
+                    <div className="subcatogery-icon-container" key={i}>
+                      {Cato[i].icon ? (
+                        <img alt="icons" width="60px" src={Cato[i].icon} />
+                      ) : null}
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div className="subcatogery-container">
-          {Cato.map((pro, i) => {
-            return (
-              <Link
-                key={i}
-                onClick={() =>
-                  cotogeryJoiner(catogery, Cato[i].title, Cato[i].superCatogery)
-                }
-                style={{ textDecoration: "none" }}
-                to={Cato[i].to === "skip" ? "/important-info" : "/input-sell"}
-                state={{
-                  catogery: catogery,
-                  subcatogery: Cato[i].title,
-                  RenderItems: Cato[i].RenderItems,
-                  price: price,
-                }}
-              >
-                <div className="subcatogery-icon-container" key={i}>
-                  {Cato[i].icon ? (
-                    <img alt="icons" width="60px" src={Cato[i].icon} />
-                  ) : null}
-
-                  <h4>{Cato[i].title}</h4>
-                </div>
-              </Link>
-            );
-          })}
+                      <h4>{Cato[i].title}</h4>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </>

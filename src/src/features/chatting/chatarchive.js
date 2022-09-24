@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { ThreeTotab } from "../../components/toptab/toptab";
 import { ChattingContext } from "./../../services/chatting.context";
 import { UserContext } from "./../../services/user.contex";
+import { Topbar } from "../../components/global/topbar";
 
 export const ChatArchive = (props) => {
   const { usercrd, signedin } = useContext(UserContext);
@@ -165,24 +166,27 @@ export const ChatArchive = (props) => {
       thirdTabname="buying"
     />
   ) : (
-    <div
-      style={{
-        display: "flex",
-        height: "100vh",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
-      <img
-        alt="not signed in"
-        width="100%"
-        src={require("../../../assets/chatting.png")}
-      />
-      <h2>Sign in to Start Chatting.</h2>
-      <Link style={{ textDecoration: "none" }} to="/login-user">
-        <div className="button"> Sign In</div>
-      </Link>
-    </div>
+    <>
+      <Topbar title="Chats" />
+      <div
+        style={{
+          display: "flex",
+          height: "100vh",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <img
+          alt="not signed in"
+          width="35%"
+          src={require("../../../assets/chatting.png")}
+        />
+        <h2>Sign in to Start Chatting.</h2>
+        <Link style={{ textDecoration: "none" }} to="/login-user">
+          <div className="button"> Sign In</div>
+        </Link>
+      </div>
+    </>
   );
 };

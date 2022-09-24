@@ -1,0 +1,276 @@
+.product-information-details-container {
+  display: flex;
+}
+
+.product-images-container {
+  width: 100%;
+  overflow-x: scroll;
+  background-color: #fff;
+  overflow-y: hidden;
+  height: 500px;
+  border: 1px solid rgba(128, 128, 128, 0.603);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.product-images-container::-webkit-scrollbar {
+  display: none;
+}
+.images-control-arrows div {
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  cursor: pointer;
+  opacity: 0.8;
+  border-radius: 50%;
+  background: grey;
+  transition: all 0.3s ease-out;
+}
+.images-control-arrows {
+  position: absolute;
+  left: 0;
+  box-sizing: border-box;
+  width: 35%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.images-control-arrows .nextimage {
+  transform: rotate(-90deg);
+  cursor: pointer;
+}
+.images-control-arrows .previousimage {
+  cursor: pointer;
+  transform: rotate(90deg);
+}
+.images-control-arrows img {
+  width: 40px;
+  transition: all 0.2s ease-out;
+  border-radius: 50%;
+  padding: 5px;
+  background: #fff;
+  box-shadow: 0 0 10px grey;
+}
+.images-control-arrows img:active {
+  background: red;
+}
+.product-images-container .image-productimage {
+  width: 100%;
+}
+.product-information-container {
+  width: 35%;
+  padding: 10px;
+  /* box-shadow: 0 0 1px black; */
+  box-sizing: border-box;
+  /* box-shadow: 0 0 1px black; */
+}
+/* .product-main-content {
+  border-bottom: 2px dashed rgba(128, 128, 128, 0.37);
+} */
+.product-title {
+  margin: 0;
+  font-size: 1.5rem;
+  color: grey;
+  font-weight: 600;
+}
+.product-price {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: rgba(0, 0, 255, 0.685);
+}
+.product-features-conatiner {
+  overflow: hidden;
+  border: 1px solid grey;
+  margin-top: 15px;
+  border-radius: 20px;
+}
+.product-features-details-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* padding: 0.5rem; */
+  color: grey;
+  border-bottom: 2px solid grey;
+}
+.product-features {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: grey;
+  font-size: 13px;
+  /* margin-left: 8px; */
+  /* padding: 8px; */
+  padding: 3px 0px 3px 15px;
+  border-bottom: 1px solid grey;
+}
+.product-features h3 {
+  margin: 0;
+  color: black;
+  font-weight: bold;
+}
+.product-features p {
+  color: grey;
+  margin: 0;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.product-description-container {
+  margin-top: 10px;
+}
+.product-description-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: grey;
+  padding: 5px;
+  border-bottom: 2px solid grey;
+}
+.product-description-container p {
+  font-size: 1rem;
+  padding: 5px;
+}
+.user-information-container {
+  width: 25%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.user-profile-card {
+  margin-top: 50px;
+  border-radius: 20px;
+  height: 300px;
+  width: 250px;
+  box-shadow: 0 0 16px grey;
+  /* width: 70%; */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid grey;
+  background: linear-gradient(rgba(0, 0, 255, 0.637), white, skyblue);
+}
+.user-profile-image {
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.user-information-name {
+  margin: 5px;
+  color: grey;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-align: center;
+}
+.user-information-published strong {
+  letter-spacing: 2px;
+}
+.user-information-action {
+  display: flex;
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  justify-content: space-around;
+}
+.user-information-action div,
+.user-call-action-button {
+  padding: 10px;
+  width: 40%;
+  background: skyblue;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+/* this css is going to be for google ad and map section */
+.map-ad-section {
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  display: flex;
+}
+.left-side-map {
+  display: flex;
+  justify-content: center;
+
+  height: 100%;
+  width: 35%;
+  background-size: cover;
+  background-position: center;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/a/a9/Long_and_Loop_Street_map.svg");
+}
+.go-to-gmap-button {
+  margin: 10px;
+  width: 30%;
+  background: pink;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50px;
+  box-shadow: 0px 0px 10px black;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.go-to-gmap-button:hover {
+  background: green;
+}
+.go-to-gmap-button:hover h2 {
+  color: #fff;
+}
+.go-to-gmap-button h2 {
+  transition: all 0.3s ease-out;
+  margin: 0;
+  color: black;
+  font-size: 1rem;
+}
+
+.right-side-ad {
+  height: 100%;
+  width: 65%;
+  background-size: cover;
+  background-position: center;
+  background-image: url("../../../../assets/ad.jpg");
+}
+
+/* this style is for image corusel  */
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  /* padding: 10px; */
+  background: #ff00008a;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  border-radius: 50%;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  transition: all 0.3s ease-out;
+}
+
+.close-button:hover {
+  background-color: green;
+  color: #000;
+  cursor: pointer;
+}

@@ -18,3 +18,17 @@
 .secnd-leftside {
   display: flex;
 }
+.sell-catogery-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  align-items: center;
+}
+.sell-catogery-content {
+  border: 1px solid grey;
+  border-radius: 20px;
+  padding: 20px;
+  /* background: red; */
+  width: 50%;
+}

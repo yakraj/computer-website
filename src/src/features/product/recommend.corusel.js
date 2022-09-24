@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
-import { RecoArchive } from "./recommended.archive";
 import { Recommended } from "../dumb.image";
 import { ReactComponent as Arrow } from "../../../assets/icon/arrow.svg";
+import { RegularArchive } from "./../explore/regular.archive";
 
-export const Corusel = () => {
+export const ProductPageCorusel = () => {
   // in here between all data will be for corusel
   const RecommendedCorusel = useRef();
   const [ScrollOn, onScrollon] = useState(0);
@@ -82,6 +82,7 @@ export const Corusel = () => {
     <div style={{ display: "flex" }}>
       {ScrollOn > 0 && (
         <div
+          style={{ marginTop: "120px" }}
           onMouseOver={() => onarrowMouse(true)}
           onMouseOut={() => onarrowMouse(false)}
           onClick={() => ScrollRecommend("-")}
@@ -101,14 +102,16 @@ export const Corusel = () => {
         }}
         onMouseUp={() => onActiveMouse(false)}
         ref={RecommendedCorusel}
+        style={{ display: "flex" }}
         className="Recommended-corusel"
       >
         {Recommended.map((x, i) => {
-          return <RecoArchive x={x} i={i} />;
+          return <RegularArchive x={x} i={i} />;
         })}
       </div>
 
       <div
+        style={{ marginTop: "120px" }}
         onMouseOver={() => onarrowMouse(true)}
         onMouseOut={() => onarrowMouse(false)}
         onClick={() => ScrollRecommend("+", 15)}

@@ -1,0 +1,126 @@
+.web-messanging-container {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.left-side-messanging-container {
+  width: 30%;
+  overflow: hidden;
+  padding: 10px;
+  box-sizing: border-box;
+  height: 100%;
+}
+.right-side-messanging-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column-reverse;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+.chats-header-container {
+}
+.chats-left-header {
+  display: flex;
+  justify-content: flex-start;
+}
+.chats-left-header h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: grey;
+  margin: 0;
+  font-size: 1.5rem;
+}
+.chats-left-searchbar {
+  display: flex;
+  align-items: center;
+}
+.chats-left-searchbar input {
+  width: 80%;
+  outline: none;
+  border: 1px solid grey;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 1rem;
+  margin-left: -35px;
+  padding-left: 45px;
+  background: transparent;
+}
+.chats-left-searchbar img {
+  margin-left: 10px;
+}
+
+.messaging-chat-archives {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  height: 100%;
+  padding-bottom: 100px;
+}
+.single-chat-archive {
+  cursor: pointer;
+  /* overflow-x: hidden; */
+  transition: all 0.3s ease-out;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.single-chat-archive:hover {
+  background: rgba(128, 128, 128, 0.487);
+}
+.single-chat-archive:hover .chat-archive-more-option {
+  display: flex;
+  opacity: 1;
+}
+.single-chat-archive p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.single-chat-archive h3 {
+  margin: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.messanging-archive-product-thumbnail {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  min-height: 70px;
+  min-width: 70px;
+  margin-right: 10px;
+}
+.chat-archive-more-option {
+  display: none;
+  opacity: 0;
+  height: 30px;
+  width: 30px;
+  /* position:absolute; */
+  transition: all 0.3s ease-out;
+  margin-left: -50px;
+  min-height: 30px;
+  min-width: 30px;
+  background-size: contain;
+  background-position: center;
+  padding: 5px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px #fff, 0px 0px 10px #fff, 0px 0px 15px #fff;
+  /* background: red; */
+  background-image: url("https://www.pngrepo.com/png/124304/180/three-dots.png");
+}

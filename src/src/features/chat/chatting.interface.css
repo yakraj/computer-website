@@ -1,0 +1,96 @@
+.chatting-container-user-interface {
+  width: 100%;
+  /* height: 100%; */
+  /* background-color: grey; */
+  margin: 0;
+}
+.chatting-container-ui-nav {
+  width: 100%;
+  /* height: 80px; */
+  padding: 5px;
+  backdrop-filter: blur(5px);
+  display: flex;
+  position: sticky;
+  box-shadow: 1px 1px 5px black;
+  justify-content: space-between;
+  top: 0;
+}
+.chatting-ui-nag-leftside {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.chatting-opposite-person {
+  height: 50px;
+  width: 50px;
+  background: #fff;
+  margin: 0 10px;
+  box-shadow: 1px 1px 5px black;
+  border-radius: 50%;
+}
+.chatting-with-detail-product p,
+h3 {
+  width: 200px;
+  overflow: hidden;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(90, 90, 90);
+}
+
+.chatting-ui-users-chats {
+  /* display: flex; */
+  padding: 5px;
+  /* flex-direction: column-reverse; */
+  box-sizing: border-box;
+  /* overflow-y: scroll; */
+}
+.chatting-ui-users-single-chat {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+}
+.chatting-ui-users-single-chat-text {
+  background: rgba(255, 192, 203, 0.699);
+  padding: 7px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: grey;
+  border-radius: 10px;
+  max-width: 70%;
+}
+
+.chatting-ui-input-section {
+  display: flex;
+  width: 100%;
+  padding: 5px;
+  background: #fff;
+  box-sizing: border-box;
+  box-shadow: -1px -1px 5px black;
+  position: sticky;
+  bottom: 0;
+}
+.chatting-ui-input-section textarea {
+  width: 85%;
+  outline: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  border: none;
+  border-bottom: 1px solid grey;
+}
+.chatting-ui-send-button:hover {
+  background: palevioletred;
+  color: #fff;
+}
+.chatting-ui-send-button {
+  display: flex;
+  cursor: pointer;
+  background: rgb(43, 241, 165);
+  padding: 15px;
+  width: 15%;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease-out;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: grey;
+  border-radius: 10px;
+}

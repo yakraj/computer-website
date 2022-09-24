@@ -1,12 +1,19 @@
+.topnav-container {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 9999;
+}
 .Navigation-container {
+  box-shadow: 0px 0px 5px black;
   display: flex;
-
   justify-content: space-between;
   align-items: center;
   padding: 5px;
 }
 
 .nav-leftside {
+  width: 70%;
   display: flex;
   align-items: center;
 }
@@ -15,8 +22,17 @@
   margin: 0;
   margin-left: 15px;
   margin-right: 15px;
-  /* padding: 10px; */
+  padding: 10px;
+  border-radius: 50px;
   color: grey;
+  transition: all 0.3s ease-out;
+}
+
+.Catogery-text:hover {
+  background: #00800047;
+  padding: 10px;
+  border-radius: 50px;
+  cursor: pointer;
 }
 
 .searchBar {
@@ -46,6 +62,9 @@
   align-items: center;
 }
 .subnavigation {
+  height: auto;
+  overflow: hidden;
+  transition: all 0.2s ease-out;
   border-top: 1px solid rgba(128, 128, 128, 0.493);
   border-bottom: 1px solid rgba(128, 128, 128, 0.493);
   /* border-bottom: 1px solid grey; */
@@ -74,4 +93,71 @@
   font-weight: bold;
   transition: all 0.3s ease-out;
   color: grey;
+}
+
+.Avatar-button {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Avatar-button:hover .account-info-display {
+  display: flex;
+}
+
+.account-info-display {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  background-color: #fff;
+  right: 0;
+  top: 50px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.account-ref-list h3 {
+  margin: 0;
+  margin-left: 5px;
+}
+.account-ref-list {
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5px;
+  border-radius: 50px;
+  padding: 10px;
+  transition: all 0.5s ease-out;
+}
+.account-ref-list h3 {
+  color: grey;
+}
+
+.account-ref-list:hover {
+  background: rgba(0, 128, 0, 0.24);
+}
+
+.Sell-button {
+  cursor: pointer;
+  margin-left: 40px;
+  margin-right: 40px;
+  letter-spacing: 5px;
+  border: 1px solid grey;
+  border-radius: 50px;
+  width: 100px;
+  padding: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: grey;
+  transition: all 0.3s ease-out;
+}
+.Sell-button:hover {
+  background: rgba(0, 128, 0, 0.24);
 }

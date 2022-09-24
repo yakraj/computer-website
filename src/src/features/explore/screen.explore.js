@@ -4,15 +4,22 @@ import { BottomNav } from "./../bottomnav/bottom.nav";
 import { ProductArchive } from "./../productarchive/product.archive";
 import "./component/explore.css";
 import { UserContext } from "./../../services/user.contex";
-import { Topnav } from "./topnav";
+import { SubNavigation, Topnav } from "./topnav";
 import { Corusel } from "./recommended.corusel";
 import { ScrollTop } from "./../../components/global/screens/scrolltop";
 import { RegularArchive } from "./regular.archive";
 import "./Styles/landing.css";
 import { Regular } from "../dumb.image";
 export const Explore = () => {
-  const { useruiAds, loadinguiads, GetuseruiAds, lattitude, longitude } =
-    useContext(UserContext);
+  const {
+    useruiAds,
+    loadinguiads,
+    signedin,
+    GetuseruiAds,
+    lattitude,
+    longitude,
+    Logout,
+  } = useContext(UserContext);
   const last = useRef();
   const archiveBody = useRef();
   const [top, settop] = useState();
@@ -58,6 +65,7 @@ export const Explore = () => {
   return (
     <div>
       <Topnav />
+      <SubNavigation />
       <div className="landing-landscape"></div>
       {/* these are reccommended ads */}
 

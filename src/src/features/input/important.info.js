@@ -112,9 +112,11 @@ export const InputImportantInfo = (props, { navigation, route }) => {
   return (
     <>
       <Topbar title="Important Information" />
-      <div>
-        <div className="important-information-container">
-          {/* {RenderIteimport { UserContext } from './../../services/user.contex';
+      <div className="sell-catogery-container">
+        <div className="sell-catogery-content">
+          <div>
+            <div className="important-information-container">
+              {/* {RenderIteimport { UserContext } from './../../services/user.contex';
 ms && (
             <div fdr="row">
               <h3 weight="bold">Catogery: </h3>
@@ -130,31 +132,31 @@ ms && (
             </>
           )} */}
 
-          <TextField type="text" multiline={false} title="Add title" />
-          <input
-            type="text"
-            style={{
-              borderWidth: 1,
-              borderColor: bg.grey,
-              borderRadius: 5,
-              padding: 8,
-              fontSize: 15,
-              marginTop: 5,
-              width: "100%",
-              color: bg.grey,
-            }}
-            maxlength={70}
-            onChange={(e) => setadTitle(e.target.value)}
-            value={adTitle}
-            // placeholder={placeholder}
-          />
-          <TextHint
-            adTitle={adTitle}
-            title="Add title"
-            hint="Add attractive title of your Ad."
-          />
+              <TextField type="text" multiline={false} title="Add title" />
+              <input
+                type="text"
+                style={{
+                  borderWidth: 1,
+                  borderColor: bg.grey,
+                  borderRadius: 5,
+                  padding: 8,
+                  fontSize: 15,
+                  marginTop: 5,
+                  width: "100%",
+                  color: bg.grey,
+                }}
+                maxlength={70}
+                onChange={(e) => setadTitle(e.target.value)}
+                value={adTitle}
+                // placeholder={placeholder}
+              />
+              <TextHint
+                adTitle={adTitle}
+                title="Add title"
+                hint="Add attractive title of your Ad."
+              />
 
-          {/* <TextInput
+              {/* <TextInput
             style={{
               borderWidth: 1,
               borderColor: "grey",
@@ -170,130 +172,132 @@ ms && (
             defaultValue={adTitle}
             // placeholder={placeholder}
           /> */}
-          <TextField type="text" title="Description" multiline={true} />
-          <textarea
-            type="text"
-            style={{
-              borderWidth: 1,
-              borderColor: "grey",
-              borderRadius: 5,
-              padding: 8,
-              fontSize: 15,
-              marginTop: 5,
-              width: "100%",
-              boxSizing: "border-box",
-              color: text.grey,
-            }}
-            maxlength={2000}
-            multiline={true}
-            // onChange={(e) => console.log(e.target.value)}
-            onInput={(e) => setadDescription(e.target.value)}
-            defaultValue={adDescription}
-            // placeholder={placeholder}
-          />
-
-          <TextHint
-            adTitle={adDescription}
-            title="Description"
-            hint="Add brif description about your product, what makes customer buy your product as like features, condition or your selling reason."
-          />
-          {RenderItems &&
-            RenderItems.map((ren, i) => {
-              return (
-                <SectionPart
-                  key={i}
-                  property={RenderItems[i].property}
-                  find={eval(RenderItems[i].find)}
-                  title={RenderItems[i].title}
-                  SetOn={eval(RenderItems[i].SetOn)}
-                  items={RenderItems[i].items}
-                  keytype={RenderItems[i].keytype}
-                  placeholder={RenderItems[i].placeholder}
-                  Item={RenderItems[i].Item}
-                  // maxLength={
-                  // RenderItems[i].maxLength ? RenderItems[i].maxLength : null
-                  // }
-                  labelDesc={RenderItems[i].labelDesc}
-                />
-              );
-            })}
-
-          {price && (
-            <div ali="flex-start" width="100%">
-              <TextField
+              <TextField type="text" title="Description" multiline={true} />
+              <textarea
                 type="text"
-                dvalue="₹.|  "
-                keytype="keytype"
-                title="Price"
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  marginTop: "15px",
-                  marginLeft: "10px",
-                }}
-                position="absolute"
-                Left="7"
-                Top="51"
-              >
-                <img
-                  alt="rs thumb"
-                  height="20"
-                  width="15"
-                  src={require("../../../assets/rs.png")}
-                />
-              </div>
-              <input
-                type="text"
-                keyboardType="number-pad"
                 style={{
                   borderWidth: 1,
                   borderColor: "grey",
                   borderRadius: 5,
                   padding: 8,
-                  paddingLeft: "25px",
                   fontSize: 15,
                   marginTop: 5,
                   width: "100%",
+                  boxSizing: "border-box",
                   color: text.grey,
                 }}
-                maxlength={10}
-                onChange={(e) => setadPrice(e.target.value)}
-                defaultValue={adPrice}
-
+                maxlength={2000}
+                multiline={true}
+                // onChange={(e) => console.log(e.target.value)}
+                onInput={(e) => setadDescription(e.target.value)}
+                defaultValue={adDescription}
                 // placeholder={placeholder}
               />
+
               <TextHint
                 adTitle={adDescription}
-                title="Price"
-                hint="Set suitable price of your Ad."
+                title="Description"
+                hint="Add brif description about your product, what makes customer buy your product as like features, condition or your selling reason."
               />
-            </div>
-          )}
+              {RenderItems &&
+                RenderItems.map((ren, i) => {
+                  return (
+                    <SectionPart
+                      key={i}
+                      property={RenderItems[i].property}
+                      find={eval(RenderItems[i].find)}
+                      title={RenderItems[i].title}
+                      SetOn={eval(RenderItems[i].SetOn)}
+                      items={RenderItems[i].items}
+                      keytype={RenderItems[i].keytype}
+                      placeholder={RenderItems[i].placeholder}
+                      Item={RenderItems[i].Item}
+                      // maxLength={
+                      // RenderItems[i].maxLength ? RenderItems[i].maxLength : null
+                      // }
+                      labelDesc={RenderItems[i].labelDesc}
+                    />
+                  );
+                })}
 
-          {/* tags starts from here */}
-          <TextField
-            type="text"
-            dvalue="₹.|  "
-            keytype="keytype"
-            title="Tags"
-          />
-          <TagsContent
-            setTags={setTags}
-            tags={tags}
-            TextC={TextC}
-            setTextC={setTextC}
-          />
-          {/* tags ends at here */}
-          {/* {adTitle.length > 4 &&
+              {price && (
+                <div ali="flex-start" width="100%">
+                  <TextField
+                    type="text"
+                    dvalue="₹.|  "
+                    keytype="keytype"
+                    title="Price"
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      marginTop: "15px",
+                      marginLeft: "10px",
+                    }}
+                    position="absolute"
+                    Left="7"
+                    Top="51"
+                  >
+                    <img
+                      alt="rs thumb"
+                      height="20"
+                      width="15"
+                      src={require("../../../assets/rs.png")}
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    keyboardType="number-pad"
+                    style={{
+                      borderWidth: 1,
+                      borderColor: "grey",
+                      borderRadius: 5,
+                      padding: 8,
+                      paddingLeft: "25px",
+                      fontSize: 15,
+                      marginTop: 5,
+                      width: "100%",
+                      color: text.grey,
+                    }}
+                    maxlength={10}
+                    onChange={(e) => setadPrice(e.target.value)}
+                    defaultValue={adPrice}
+
+                    // placeholder={placeholder}
+                  />
+                  <TextHint
+                    adTitle={adDescription}
+                    title="Price"
+                    hint="Set suitable price of your Ad."
+                  />
+                </div>
+              )}
+
+              {/* tags starts from here */}
+              <TextField
+                type="text"
+                dvalue="₹.|  "
+                keytype="keytype"
+                title="Tags"
+              />
+              <TagsContent
+                setTags={setTags}
+                tags={tags}
+                TextC={TextC}
+                setTextC={setTextC}
+              />
+              {/* tags ends at here */}
+              {/* {adTitle.length > 4 &&
             adDescription.length > 4 &&
             adPrice.length >= 2 && ( */}
-          <Link style={{ textDecoration: "none" }} to="/upload-images">
-            <div className="next-button-properties">
-              <h3 weight="bold">Next</h3>
+              <Link style={{ textDecoration: "none" }} to="/upload-images">
+                <div className="next-button-properties">
+                  <h3 weight="bold">Next</h3>
+                </div>
+              </Link>
+              {/* )} */}
             </div>
-          </Link>
-          {/* )} */}
+          </div>
         </div>
       </div>
     </>

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import "./chattingui.css";
+import "./chattingui.web.css";
 import person from "../../../assets/profile.jpg";
 import { useNavigate, useLocation } from "react-router-dom";
 import FlatList from "flatlist-react";
@@ -7,6 +8,8 @@ import { ChattingContext } from "./../../services/chatting.context";
 import { UserContext } from "./../../services/user.contex";
 // var people = [{ firstName: "Elson", lastName: "Correia", info: { age: 24 } }];
 import { Imagehost } from "./../../services/host.network";
+import { ChattingUIChat } from "./chatting.interface";
+import { Topnav } from "../explore/topnav";
 export const ChattingUI = (props) => {
   const {
     ReturnChats,
@@ -15,7 +18,8 @@ export const ChattingUI = (props) => {
     userData,
     LastchatId,
   } = useContext(ChattingContext);
-  const { usercrd, signedin } = useContext(UserContext);
+  const { usercrd, signedin, topNavHeight } = useContext(UserContext);
+
   let location = useLocation();
 
   const [people, setpeople] = useState([]);
@@ -97,93 +101,86 @@ export const ChattingUI = (props) => {
     ? ReturnChats.find((x) => x.id === LastchatId)
     : [];
 
+  const SingleChatArchive = ({ colour }) => {
+    return (
+      <div style={{ background: colour }} className="single-chat-archive">
+        {/* it will have two div for icon/thumbnail and details */}
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <div
+            style={{
+              backgroundImage:
+                "url(https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Zm9jdXN8ZW58MHx8MHx8&w=1000&q=80)",
+            }}
+            className="messanging-archive-product-thumbnail"
+          />
+          {/* from here product detail and description starts */}
+          <div className="messanging-detail">
+            <h3>Title of product</h3>
+            <p>Last chat happend with person</p>
+          </div>
+        </div>
+        <div className="chat-archive-more-option"></div>
+      </div>
+    );
+  };
   return (
     <>
-      <div className="topNavchatui">
-        {/* leftside */}
-        {userData && (
-          <div className="chatuileft">
-            <div
-              onClick={() => {
-                navigate(-1);
-              }}
-              className="returnchatui"
-            >
-              <img
-                style={{ height: "35px", width: "35px" }}
-                alt="goback"
-                src={require("../../../assets/icon/back.png")}
-              />
-              <div
-                className="chatperson"
-                style={{
-                  backgroundImage: `url(${Imagehost + "/" + userData[0].image}`,
-                }}
-              />
-            </div>
-            <h3>
-              {userData && userData[0].firstname + " " + userData[0].lastname}
-            </h3>
-            {/* rightside */}
-          </div>
-        )}
-        <img
-          width="30px"
-          alt="goback"
-          src={require("../../../assets/icon/three-dot.svg").default}
-        />
-      </div>
+      <Topnav />
       <div
         style={{
-          height: "84vh",
-          overflow: "scroll",
-          boxSizing: "border-box",
-          padding: "10px",
-          display: "flex",
-          flexDirection: "column-reverse",
+          paddingTop: topNavHeight + "px",
+          marginTop: -topNavHeight + "px",
+          height: window.innerHeight,
         }}
+        className="web-messanging-container"
       >
-        <FlatList
-          list={
-            ReturnChats.length
-              ? FindMy
-                ? [...FindMy.content].reverse()
-                : []
-              : []
-          }
-          style={{ height: "70vh" }}
-          renderItem={renderPerson}
-          renderWhenEmpty={() => <div>You don't have any chat Yet!</div>}
-          // groupBy={(person) => (person.info.age > 18 ? "Over 18" : "Under 18")}
-        />
-      </div>
-      {/* this is chat sening area */}
-      <div className="typechatbottom">
-        <textarea
-          onInput={(e) => onChangeChatText(e.target.value)}
-          rows={1}
-          value={chatText}
-          type="text"
-          className="messagetypeui"
-        />
-
-        <img
-          className="blackblue"
-          onClick={() => {
-            findInclude
-              ? CreateProductChat(
-                  chatid ? chatid : LastchatId,
-                  chatText,
-                  usercrd.username
-                )
-              : createFirstchat(usercrd.username, seller, adid, chatText);
-            onChangeChatText("");
-          }}
-          width="30px"
-          height="30px"
-          alt="goback"
-          src={require("../../../assets/icon/send.svg").default}
-        />
+        {/* // this is going to be a actual web chatting appearence */}
+        {/* // mainly it will contain two sides like right -side and left side */}
+        <div className="left-side-messanging-container">
+          {/* this is left side container of user  */}
+          {/* this is header of chats archives */}
+          <div className="chats-header-container">
+            <div className="chats-left-header">
+              <h1>Chats</h1>
+            </div>
+            {/* people can use this as search for more chats */}
+            <div className="chats-left-searchbar">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Search_Noun_project_15028.svg/1046px-Search_Noun_project_15028.svg.png"
+                width="25px"
+                height="25px"
+                alt="searchicon"
+              />
+              <input type="text" placeholder="Search" />
+            </div>
+          </div>
+          {/* now here we will have a scrollbar of chat contents */}
+          <div className="messaging-chat-archives">
+            {/* at this position a single chat archive will be here */}
+            <SingleChatArchive colour="rgba(135, 207, 235, 0.542)" />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+            <SingleChatArchive />
+          </div>
+        </div>
+        <div className="right-side-messanging-container">
+          <ChattingUIChat />
+        </div>
       </div>
     </>
   );
