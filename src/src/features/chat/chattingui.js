@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./chattingui.css";
 import "./chattingui.web.css";
 import person from "../../../assets/profile.jpg";
@@ -10,21 +10,48 @@ import { UserContext } from "./../../services/user.contex";
 import { Imagehost } from "./../../services/host.network";
 import { ChattingUIChat } from "./chatting.interface";
 import { Topnav } from "../explore/topnav";
-export const ChattingUI = (props) => {
+export const ChattingUI = () => {
   const {
     ReturnChats,
     CreateProductChat,
     createFirstchat,
     userData,
     LastchatId,
+
+    // these all imports are required for chattingarchives
+    chatArchive,
+    setNewchatid,
+    getUserchatData,
+    getUserschat,
+    deleteChatArchive,
+    GetChatlist,
+    setLastchatId,
+    loadingUserData,
   } = useContext(ChattingContext);
+
+  // from here all function will be impleted for chatarchive
+  useEffect(() => {
+    signedin && GetChatlist(usercrd.username);
+    setLastchatId("");
+    // console.log("chat archive page");
+  }, []);
+
+  // until here all function will be impleted for chatarchive
+  //
+  // this portion for textinput
+  const [seller, onseller] = useState("");
+  const [buyer, onbuyer] = useState("");
+  const [chatid, onchatid] = useState("");
+
+  const [chattings, onChattings] = useState([]);
+
   const { usercrd, signedin, topNavHeight } = useContext(UserContext);
 
   let location = useLocation();
 
   const [people, setpeople] = useState([]);
   const [chatText, onChangeChatText] = useState();
-  const { seller, buyer, adid, chatid } = location.state.Details;
+  // const { seller, buyer, adid, chatid } = location.state.Details;
 
   var findInclude = chatid
     ? ReturnChats.find((x) => x.id === chatid)
@@ -93,36 +120,48 @@ export const ChattingUI = (props) => {
   };
 
   // returning my own chats according this window chats
-  var FindMy = chatid
+  const [findmychatid, onfindmychatid] = useState("");
+  var FindMy = findmychatid
     ? ReturnChats
-      ? ReturnChats.find((x) => x.id === chatid)
+      ? ReturnChats.find((x) => x.id === findmychatid)
       : []
     : ReturnChats
-    ? ReturnChats.find((x) => x.id === LastchatId)
+    ? ReturnChats.find((x) => x.id === findmychatid)
     : [];
 
-  const SingleChatArchive = ({ colour }) => {
+  const SingleChatArchive = ({ x, colour }) => {
     return (
-      <div style={{ background: colour }} className="single-chat-archive">
+      <div
+        onClick={() => {
+          getUserchatData(x.buyer === usercrd.username ? x.seller : x.buyer);
+          getUserschat(x.chatid);
+          onfindmychatid(x.chatid);
+          onseller(x.seller);
+          onbuyer(x.buyer);
+          onchatid(x.chatid);
+        }}
+        style={{ background: colour }}
+        className="single-chat-archive"
+      >
         {/* it will have two div for icon/thumbnail and details */}
         <div style={{ display: "flex", alignItems: "center" }}>
           <div
             style={{
-              backgroundImage:
-                "url(https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Zm9jdXN8ZW58MHx8MHx8&w=1000&q=80)",
+              backgroundImage: `url(https://storage.googleapis.com/post-thumbnail/${x.thumbnail})`,
             }}
             className="messanging-archive-product-thumbnail"
           />
           {/* from here product detail and description starts */}
           <div className="messanging-detail">
-            <h3>Title of product</h3>
-            <p>Last chat happend with person</p>
+            <h3>{x.title}</h3>
+            <p>{x.lastchat}</p>
           </div>
         </div>
         <div className="chat-archive-more-option"></div>
       </div>
     );
   };
+  console.log(chatArchive);
   return (
     <>
       <Topnav />
@@ -157,29 +196,32 @@ export const ChattingUI = (props) => {
           {/* now here we will have a scrollbar of chat contents */}
           <div className="messaging-chat-archives">
             {/* at this position a single chat archive will be here */}
-            <SingleChatArchive colour="rgba(135, 207, 235, 0.542)" />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
-            <SingleChatArchive />
+            {chatArchive &&
+              chatArchive.map((x, i) => {
+                return (
+                  <SingleChatArchive
+                    key={i}
+                    x={x}
+                    //  colour="rgba(135, 207, 235, 0.542)"
+                  />
+                );
+              })}
           </div>
         </div>
         <div className="right-side-messanging-container">
-          <ChattingUIChat />
+          <ChattingUIChat
+            findInclude={findInclude}
+            chatid={chatid}
+            LastchatId={LastchatId}
+            createFirstchat={createFirstchat}
+            usercrd={usercrd}
+            seller={seller}
+            adid="hello"
+            loadingUserData={loadingUserData}
+            userData={userData}
+            Chats={FindMy ? FindMy.content : []}
+            CreateProductChat={CreateProductChat}
+          />
         </div>
       </div>
     </>

@@ -25,6 +25,8 @@
   width: 50px;
   background: #fff;
   margin: 0 10px;
+  background-size: cover;
+  background-position: center;
   box-shadow: 1px 1px 5px black;
   border-radius: 50%;
 }
@@ -40,8 +42,10 @@ h3 {
 .chatting-ui-users-chats {
   /* display: flex; */
   padding: 5px;
+  margin-top: 84%;
   /* flex-direction: column-reverse; */
   box-sizing: border-box;
+  height: 100%;
   /* overflow-y: scroll; */
 }
 .chatting-ui-users-single-chat {

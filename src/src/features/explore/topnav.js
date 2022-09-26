@@ -7,6 +7,7 @@ import { ReactComponent as LogOut } from "../../../assets/icon/logout.svg";
 import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../services/user.contex";
+import { Imagehost } from "../../services/host.network";
 export const SubNavigation = () => {
   return (
     <div className="subnavigation">
@@ -23,7 +24,7 @@ export const SubNavigation = () => {
 };
 
 export const Topnav = () => {
-  const { signedin, Logout, ontopNavHeight } = useContext(UserContext);
+  const { usercrd, signedin, Logout, ontopNavHeight } = useContext(UserContext);
 
   const Subnavigation = useRef();
   const TopNavigation = useRef();
@@ -78,7 +79,7 @@ export const Topnav = () => {
         </div>
         {/* these are to be aligned right */}
         <div className="nav-rightside">
-          <Link style={{ textDecoration: "none" }} to="/chatarchive">
+          <Link style={{ textDecoration: "none" }} to="/chattingui">
             <img
               width="35px"
               alt="message"
@@ -98,12 +99,12 @@ export const Topnav = () => {
                 borR="50%"
                 ofl="hidden"
                 height="50px"
+                style={{
+                  backgroundImage: signedin
+                    ? `url(${Imagehost + "/" + usercrd.image})`
+                    : "url(https://www.veryicon.com/download/png/miscellaneous/youyinzhibo/guest?s=256)",
+                }}
               >
-                <img
-                  width="150%"
-                  alt="brand logo"
-                  src={require("../../../assets/avatar.jpg")}
-                />
                 {signedin ? (
                   <div className="account-info-display">
                     <Link style={{ textDecoration: "none" }} to="/account">
@@ -115,7 +116,7 @@ export const Topnav = () => {
 
                     <div onClick={() => Logout()} className="account-ref-list">
                       <LogOut width="30px" height="30px" fill="grey" />
-                      <h3>Lotout</h3>
+                      <h3>Log Out</h3>
                     </div>
                   </div>
                 ) : (

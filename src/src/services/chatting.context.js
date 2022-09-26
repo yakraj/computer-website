@@ -12,6 +12,7 @@ import {
 import { UserContext } from "../services/user.contex";
 export const ChattingContext = React.createContext();
 export const ChattingProvider = ({ children }) => {
+  const [loadingUserData, onLoadingUserData] = useState(false);
   const [ChatLength, setChatLength] = useState("");
   const [loadingChat, setloadingChat] = useState(false);
   const [chatArchive, setChatArchive] = useState([]);
@@ -50,56 +51,60 @@ export const ChattingProvider = ({ children }) => {
   };
 
   const getUserchatData = (user) => {
-    getUserDetail(user).then((response) => {
-      setUserData(response);
-    });
+    onLoadingUserData(true);
+    getUserDetail(user)
+      .then((response) => {
+        setUserData(response);
+        onLoadingUserData(false);
+      })
+      .catch((err) => {
+        onLoadingUserData(false);
+      });
   };
   // this is for chats
-
   const PollMaker = (chatid) => {
     ProductChatPoll(chatid, activeChatid);
     return true;
   };
   const ProductChatPoll = (chatid, activeChatid) => {
-    return CreateChatPool(chatid)
-      .then((response) => {
-        // console.log(response);
-        var findInclude = ReturnChats.find((x) => x.id === chatid);
-        if (response.data === "end") {
+    return CreateChatPool(chatid).then((response) => {
+      // console.log(response);
+      var findInclude = ReturnChats.find((x) => x.id === chatid);
+      if (response.data === "end") {
+      } else {
+        if (findInclude) {
+          var removeChat = ReturnChats.filter((x) => x.id !== chatid);
+          setReturnChats([
+            ...removeChat,
+            { id: response.data[0], content: response.data[1] },
+          ]);
         } else {
-          if (findInclude) {
-            var removeChat = ReturnChats.filter((x) => x.id !== chatid);
-            setReturnChats([
-              ...removeChat,
-              { id: response.data[0], content: response.data[1] },
-            ]);
-          } else {
-            setReturnChats([
-              ...ReturnChats,
-              { id: response.data[0], content: response.data[1] },
-            ]);
-          }
+          setReturnChats([
+            ...ReturnChats,
+            { id: response.data[0], content: response.data[1] },
+          ]);
         }
-        // if (!response.data === "end") {
-        //   console.log("on end", response.data);
-        //   if (findInclude) {
-        //     var removeChat = ReturnChats.filter((x) => x.id !== chatid);
-        //     setReturnChats([
-        //       ...removeChat,
-        //       { id: response.data[0], content: response.data[1] },
-        //     ]);
-        //   } else {
-        //     console.log("on set", response.data);
-        //     setReturnChats([
-        //       ...ReturnChats,
-        //       { id: response.data[0], content: response.data[1] },
-        //     ]);
-        //   }
-        // }
-      })
-      .finally(() => {
-        return PollMaker(chatid);
-      });
+      }
+      // if (!response.data === "end") {
+      //   console.log("on end", response.data);
+      //   if (findInclude) {
+      //     var removeChat = ReturnChats.filter((x) => x.id !== chatid);
+      //     setReturnChats([
+      //       ...removeChat,
+      //       { id: response.data[0], content: response.data[1] },
+      //     ]);
+      //   } else {
+      //     console.log("on set", response.data);
+      //     setReturnChats([
+      //       ...ReturnChats,
+      //       { id: response.data[0], content: response.data[1] },
+      //     ]);
+      //   }
+      // }
+    });
+    // .finally(() => {
+    //   return PollMaker(chatid);
+    // });
   };
 
   const getUserschat = (chatid) => {
@@ -240,6 +245,7 @@ export const ChattingProvider = ({ children }) => {
         deleteChatArchive,
         LastchatId,
         setLastchatId,
+        loadingUserData,
       }}
     >
       {children}
