@@ -42,7 +42,7 @@ h3 {
 .chatting-ui-users-chats {
   /* display: flex; */
   padding: 5px;
-  margin-top: 84%;
+  /* margin-top: 84%; */
   /* flex-direction: column-reverse; */
   box-sizing: border-box;
   height: 100%;

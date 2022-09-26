@@ -12,6 +12,10 @@ import {
 import { UserContext } from "../services/user.contex";
 export const ChattingContext = React.createContext();
 export const ChattingProvider = ({ children }) => {
+  // it will store fake data of chattings
+  const [fakeChatArchive, onfakeChatArchive] = useState();
+  const [findmychatid, onfindmychatid] = useState("");
+  //
   const [loadingUserData, onLoadingUserData] = useState(false);
   const [ChatLength, setChatLength] = useState("");
   const [loadingChat, setloadingChat] = useState(false);
@@ -67,44 +71,47 @@ export const ChattingProvider = ({ children }) => {
     return true;
   };
   const ProductChatPoll = (chatid, activeChatid) => {
-    return CreateChatPool(chatid).then((response) => {
-      // console.log(response);
-      var findInclude = ReturnChats.find((x) => x.id === chatid);
-      if (response.data === "end") {
-      } else {
-        if (findInclude) {
-          var removeChat = ReturnChats.filter((x) => x.id !== chatid);
-          setReturnChats([
-            ...removeChat,
-            { id: response.data[0], content: response.data[1] },
-          ]);
+    return CreateChatPool(chatid)
+      .then((response) => {
+        // console.log(response);
+        var findInclude = ReturnChats.find((x) => x.id === chatid);
+        if (response.data === "end") {
         } else {
-          setReturnChats([
-            ...ReturnChats,
-            { id: response.data[0], content: response.data[1] },
-          ]);
+          if (findInclude) {
+            var removeChat = ReturnChats.filter((x) => x.id !== chatid);
+            var remaining;
+
+            setReturnChats([
+              ...removeChat,
+              { id: response.data[0], content: response.data[1] },
+            ]);
+          } else {
+            setReturnChats([
+              ...ReturnChats,
+              { id: response.data[0], content: response.data[1] },
+            ]);
+          }
         }
-      }
-      // if (!response.data === "end") {
-      //   console.log("on end", response.data);
-      //   if (findInclude) {
-      //     var removeChat = ReturnChats.filter((x) => x.id !== chatid);
-      //     setReturnChats([
-      //       ...removeChat,
-      //       { id: response.data[0], content: response.data[1] },
-      //     ]);
-      //   } else {
-      //     console.log("on set", response.data);
-      //     setReturnChats([
-      //       ...ReturnChats,
-      //       { id: response.data[0], content: response.data[1] },
-      //     ]);
-      //   }
-      // }
-    });
-    // .finally(() => {
-    //   return PollMaker(chatid);
-    // });
+        // if (!response.data === "end") {
+        //   console.log("on end", response.data);
+        //   if (findInclude) {
+        //     var removeChat = ReturnChats.filter((x) => x.id !== chatid);
+        //     setReturnChats([
+        //       ...removeChat,
+        //       { id: response.data[0], content: response.data[1] },
+        //     ]);
+        //   } else {
+        //     console.log("on set", response.data);
+        //     setReturnChats([
+        //       ...ReturnChats,
+        //       { id: response.data[0], content: response.data[1] },
+        //     ]);
+        //   }
+        // }
+      })
+      .finally(() => {
+        return PollMaker(chatid);
+      });
   };
 
   const getUserschat = (chatid) => {
@@ -148,6 +155,9 @@ export const ChattingProvider = ({ children }) => {
     CreatefirstChat(buyer, seller, adid, chatText).then((response) => {
       setChatArchive([...chatArchive, response[0]]);
       setLastchatId(response[1][0]);
+      onfindmychatid(response[1][0]);
+
+      onfakeChatArchive("");
       setReturnChats([
         ...ReturnChats,
         { id: response[1][0], content: [response[1][1]] },
@@ -246,6 +256,10 @@ export const ChattingProvider = ({ children }) => {
         LastchatId,
         setLastchatId,
         loadingUserData,
+        fakeChatArchive,
+        onfakeChatArchive,
+        findmychatid,
+        onfindmychatid,
       }}
     >
       {children}

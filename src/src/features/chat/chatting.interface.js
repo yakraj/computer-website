@@ -3,7 +3,6 @@ import { Imagehost } from "../../services/host.network";
 import "./chatting.interface.css";
 import { DumbChat } from "./dumb";
 export const ChattingUIChat = ({
-  CreateProductChat,
   findInclude,
   chatid,
   LastchatId,
@@ -14,6 +13,7 @@ export const ChattingUIChat = ({
   loadingUserData,
   userData,
   Chats,
+  CreateProductChat,
 }) => {
   const [InputText, onInputText] = useState("");
 

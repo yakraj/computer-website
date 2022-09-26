@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./account.css";
 import "./account.web.css";
 import { Topbar } from "../../components/global/topbar";
@@ -6,17 +6,26 @@ import profile from "../../../assets/profile.jpg";
 import { TwoTotab } from "./../../components/toptab/twotoptab";
 import { ThreeTotab } from "../../components/toptab/toptab";
 import { ProductArchive } from "./../productarchive/product.archive";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "./../../services/user.contex";
 import { Imagehost } from "./../../services/host.network";
 import { Topnav } from "../explore/topnav";
 import { RegularArchive } from "./../explore/regular.archive";
 import { Regular } from "../dumb.image";
 export const Account = () => {
-  const { usercrd, userAds, FavAds, searchaddressName } =
+  const navigate = useNavigate();
+  const { usercrd, signedin, userAds, FavAds, searchaddressName } =
     useContext(UserContext);
-
-  console.log(FavAds);
+  // firstname: "Yakraj"
+  // lastname: "Pariyar"
+  // address: "Botechaur, Sahare, Nepal"
+  // location: Array(2)
+  // image: "blob-1655783908928.png"
+  // username: "Yakrajamwl4nmzmso"
+  // mobile: "7709543082
+  useEffect(() => {
+    signedin ? console.log("thanks") : navigate("/login-user");
+  }, [usercrd]);
   const NavigateIcon = ({ icon, type, route }) => {
     return (
       <Link to={`/${route}`}>
@@ -240,21 +249,27 @@ export const Account = () => {
     https://t.ly/gzIq
     */}
           <div
-            style={{ backgroundImage: "url(https://t.ly/gzIq)" }}
+            style={{
+              backgroundImage: `url(${Imagehost + "/" + usercrd.image})`,
+            }}
             className="account-user-profile-image"
           />
 
           {/* this antoher side will contain name number and addresss */}
           <div className="account-user-profile-info">
-            <h1>Yakraj Pariyar | 7709543082</h1>
-            <h3>Malegaon sinnar midc</h3>
+            <h1>{`${usercrd.firstname + " " + usercrd.lastname} | ${
+              usercrd.mobile
+            }`}</h1>
+            <h3>{usercrd.address}</h3>
           </div>
         </div>
-        <img
-          className="setting-icon"
-          alt="settings-icon"
-          src={require("../../../assets/icon/settings.png")}
-        />
+        <Link to="/editprofile">
+          <img
+            className="setting-icon"
+            alt="settings-icon"
+            src={require("../../../assets/icon/settings.png")}
+          />
+        </Link>
       </div>
 
       {/* from here user published ads appears */}

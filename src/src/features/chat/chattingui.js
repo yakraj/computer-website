@@ -27,8 +27,12 @@ export const ChattingUI = () => {
     GetChatlist,
     setLastchatId,
     loadingUserData,
+    // these two data will be for fake chatarchive
+    fakeChatArchive,
+    onfakeChatArchive,
+    findmychatid,
+    onfindmychatid,
   } = useContext(ChattingContext);
-
   // from here all function will be impleted for chatarchive
   useEffect(() => {
     signedin && GetChatlist(usercrd.username);
@@ -41,6 +45,7 @@ export const ChattingUI = () => {
   // this portion for textinput
   const [seller, onseller] = useState("");
   const [buyer, onbuyer] = useState("");
+  const [adid, onadid] = useState("");
   const [chatid, onchatid] = useState("");
 
   const [chattings, onChattings] = useState([]);
@@ -49,9 +54,33 @@ export const ChattingUI = () => {
 
   let location = useLocation();
 
+  useEffect(() => {
+    if (location.state) {
+      if (location.state.Details.chatid) {
+        onchatid(location.state.Details.chatid);
+        onfindmychatid(location.state.Details.chatid);
+      } else {
+        onseller(location.state.Details.seller);
+        onbuyer(location.state.Details.buyer);
+        onadid(location.state.Details.adid);
+        onfindmychatid(location.state.Details.chatid);
+        onfakeChatArchive({
+          buyer: location.state.Details.buyer,
+          seller: location.state.Details.seller,
+          chatid: location.state.Details.chatid,
+          title: location.state.Details.title,
+          adid: location.state.Details.adid,
+          image: location.state.Details.image,
+          lastchat: "you don't have any chat yet.",
+        });
+      }
+    } else {
+      onfakeChatArchive("");
+    }
+  }, []);
   const [people, setpeople] = useState([]);
   const [chatText, onChangeChatText] = useState();
-  // const { seller, buyer, adid, chatid } = location.state.Details;
+  // const { Details } = location.state;
 
   var findInclude = chatid
     ? ReturnChats.find((x) => x.id === chatid)
@@ -120,7 +149,7 @@ export const ChattingUI = () => {
   };
 
   // returning my own chats according this window chats
-  const [findmychatid, onfindmychatid] = useState("");
+
   var FindMy = findmychatid
     ? ReturnChats
       ? ReturnChats.find((x) => x.id === findmychatid)
@@ -133,12 +162,14 @@ export const ChattingUI = () => {
     return (
       <div
         onClick={() => {
-          getUserchatData(x.buyer === usercrd.username ? x.seller : x.buyer);
-          getUserschat(x.chatid);
-          onfindmychatid(x.chatid);
-          onseller(x.seller);
-          onbuyer(x.buyer);
-          onchatid(x.chatid);
+          onfakeChatArchive("");
+          x.chatid &&
+            getUserchatData(x.buyer === usercrd.username ? x.seller : x.buyer);
+          x.chatid && getUserschat(x.chatid);
+          x.chatid && onfindmychatid(x.chatid);
+          x.chatid && onseller(x.seller);
+          x.chatid && onbuyer(x.buyer);
+          x.chatid && onchatid(x.chatid);
         }}
         style={{ background: colour }}
         className="single-chat-archive"
@@ -147,7 +178,9 @@ export const ChattingUI = () => {
         <div style={{ display: "flex", alignItems: "center" }}>
           <div
             style={{
-              backgroundImage: `url(https://storage.googleapis.com/post-thumbnail/${x.thumbnail})`,
+              backgroundImage: x.chatid
+                ? `url(https://storage.googleapis.com/post-thumbnail/${x.thumbnail})`
+                : `url(https://storage.googleapis.com/sunaulo-uploads/${x.image})`,
             }}
             className="messanging-archive-product-thumbnail"
           />
@@ -161,7 +194,6 @@ export const ChattingUI = () => {
       </div>
     );
   };
-  console.log(chatArchive);
   return (
     <>
       <Topnav />
@@ -206,6 +238,12 @@ export const ChattingUI = () => {
                   />
                 );
               })}
+            {fakeChatArchive && (
+              <SingleChatArchive
+                colour="rgba(135, 207, 235, 0.542)"
+                x={fakeChatArchive}
+              />
+            )}
           </div>
         </div>
         <div className="right-side-messanging-container">
@@ -216,11 +254,12 @@ export const ChattingUI = () => {
             createFirstchat={createFirstchat}
             usercrd={usercrd}
             seller={seller}
-            adid="hello"
+            buyer={buyer}
+            adid={adid}
+            CreateProductChat={CreateProductChat}
             loadingUserData={loadingUserData}
             userData={userData}
             Chats={FindMy ? FindMy.content : []}
-            CreateProductChat={CreateProductChat}
           />
         </div>
       </div>

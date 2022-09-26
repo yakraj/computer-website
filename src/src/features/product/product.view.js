@@ -145,6 +145,8 @@ export const ProductView = () => {
               seller: userViews[2],
               adid: data.pathname.substring(9),
               chatid: Cfinder(),
+              title: webInfo.title,
+              image: productInfo[2].images[0],
             },
           },
         })

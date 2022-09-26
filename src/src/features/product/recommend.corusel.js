@@ -29,17 +29,17 @@ export const ProductPageCorusel = () => {
     console.log(MouseCorusel ? "mouse is there" : "I do not know mouse");
   };
 
-  useEffect(() => {
-    for (var i = 1; i < 1000; i++) {
-      (function (index) {
-        setTimeout(function () {
-          RecommendedCorusel.current.style.scrollBehavior = "smooth";
-          // RecommendedCorusel.current.scrollTo(422*index,0);
-          ontrydata(index);
-        }, i * 2000);
-      })(i);
-    }
-  }, []);
+  // useEffect(() => {
+  //   for (var i = 1; i < 1000; i++) {
+  //     (function (index) {
+  //       setTimeout(function () {
+  //         RecommendedCorusel.current.style.scrollBehavior = "smooth";
+  //         // RecommendedCorusel.current.scrollTo(422*index,0);
+  //         ontrydata(index);
+  //       }, i * 2000);
+  //     })(i);
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (ActiveMouse) {
