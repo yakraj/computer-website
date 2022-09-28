@@ -76,14 +76,15 @@ export const ChattingUIChat = ({
                 x.text && (
                   <div
                     style={{
-                      justifyContent:
+                      flexDirection: "column",
+                      alignItems:
                         x.userfrom === usercrd.username
                           ? "flex-end"
                           : "flex-start",
                     }}
                     className="chatting-ui-users-single-chat"
                   >
-                    <div
+                    <pre
                       style={{
                         margin: "5px",
                         background:
@@ -94,7 +95,29 @@ export const ChattingUIChat = ({
                       className="chatting-ui-users-single-chat-text"
                     >
                       {x.text}
-                    </div>
+                    </pre>
+                    <p
+                      style={{
+                        margin: "0px 5px",
+                        color: "grey",
+                        fontSize: "0.7rem",
+                        marginTop: "-5px",
+                      }}
+                    >
+                      <strong>
+                        {new Date(x.date).toString().substring(0, 3) + "  "}
+                      </strong>
+                      {new Date(x.date).getHours() > 12
+                        ? new Date(x.date).getHours() -
+                          12 +
+                          ":" +
+                          new Date(x.date).getMinutes() +
+                          " PM"
+                        : new Date(x.date).getHours() +
+                          ":" +
+                          new Date(x.date).getMinutes() +
+                          " AM"}
+                    </p>
                   </div>
                 )
               );

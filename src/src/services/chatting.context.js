@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lodash, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   getChatArchive,
   getUserDetail,
@@ -40,7 +40,7 @@ export const ChattingProvider = ({ children }) => {
     // .then((response) => setsocketmessage(response));
   };
 
-  const { username } = useContext(UserContext);
+  const { usercrd } = useContext(UserContext);
 
   const GetChatlist = (user) => {
     setloadingChat(true);
@@ -66,6 +66,77 @@ export const ChattingProvider = ({ children }) => {
       });
   };
   // this is for chats
+  // another time use effect
+  const [Pollresponse, onPollResponse] = useState();
+  useEffect(() => {
+    if (Pollresponse) {
+      var chatid;
+      chatid = Pollresponse.data[0];
+      var findInclude = ReturnChats.find((x) => x.id === chatid);
+
+      if (Pollresponse.data === "end") {
+      } else {
+        if (findInclude) {
+          var localdte = new Date(
+            findInclude.content[findInclude.content.length - 1].date
+          );
+          var returndte = new Date(
+            Pollresponse.data[1][Pollresponse.data[1].length - 1].date
+          );
+          var timeVary = localdte.getTime() - returndte.getTime();
+          console.log(timeVary / 1000);
+          var removeChat = ReturnChats.filter((x) => x.id !== chatid);
+          var reschats = [];
+          var remaining;
+          // now i'am going to compare it with and find it out the last message is mine or others
+          if (
+            findInclude.content[findInclude.content.length - 1].userfrom ===
+            usercrd.username
+          ) {
+            if (timeVary <= 1) {
+              setReturnChats([
+                ...removeChat,
+                { id: Pollresponse.data[0], content: Pollresponse.data[1] },
+              ]);
+            } else {
+              reschats = Pollresponse.data[1];
+              remaining = findInclude.content[findInclude.content.length - 1];
+              reschats = [...reschats, remaining];
+              setReturnChats([
+                ...removeChat,
+                { id: Pollresponse.data[0], content: reschats },
+              ]);
+            }
+          } else {
+            setReturnChats([
+              ...removeChat,
+              { id: Pollresponse.data[0], content: Pollresponse.data[1] },
+            ]);
+          }
+        } else {
+          setReturnChats([
+            ...ReturnChats,
+            { id: Pollresponse.data[0], content: Pollresponse.data[1] },
+          ]);
+        }
+      }
+      // if (!response.data === "end") {
+      //   if (findInclude) {
+      //     var removeChat = ReturnChats.filter((x) => x.id !== chatid);
+      //     setReturnChats([
+      //       ...removeChat,
+      //       { id: response.data[0], content: response.data[1] },
+      //     ]);
+      //   } else {
+      //     setReturnChats([
+      //       ...ReturnChats,
+      //       { id: response.data[0], content: response.data[1] },
+      //     ]);
+      //   }
+      // }
+    }
+  }, [ReturnChats.anything, Pollresponse, usercrd]);
+
   const PollMaker = (chatid) => {
     ProductChatPoll(chatid, activeChatid);
     return true;
@@ -73,41 +144,7 @@ export const ChattingProvider = ({ children }) => {
   const ProductChatPoll = (chatid, activeChatid) => {
     return CreateChatPool(chatid)
       .then((response) => {
-        // console.log(response);
-        var findInclude = ReturnChats.find((x) => x.id === chatid);
-        if (response.data === "end") {
-        } else {
-          if (findInclude) {
-            var removeChat = ReturnChats.filter((x) => x.id !== chatid);
-            var remaining;
-
-            setReturnChats([
-              ...removeChat,
-              { id: response.data[0], content: response.data[1] },
-            ]);
-          } else {
-            setReturnChats([
-              ...ReturnChats,
-              { id: response.data[0], content: response.data[1] },
-            ]);
-          }
-        }
-        // if (!response.data === "end") {
-        //   console.log("on end", response.data);
-        //   if (findInclude) {
-        //     var removeChat = ReturnChats.filter((x) => x.id !== chatid);
-        //     setReturnChats([
-        //       ...removeChat,
-        //       { id: response.data[0], content: response.data[1] },
-        //     ]);
-        //   } else {
-        //     console.log("on set", response.data);
-        //     setReturnChats([
-        //       ...ReturnChats,
-        //       { id: response.data[0], content: response.data[1] },
-        //     ]);
-        //   }
-        // }
+        onPollResponse(response);
       })
       .finally(() => {
         return PollMaker(chatid);
@@ -115,6 +152,8 @@ export const ChattingProvider = ({ children }) => {
   };
 
   const getUserschat = (chatid) => {
+    var findInc = madeLoop.find((x) => x === chatid);
+    !findInc && setMadeloop([...madeLoop, chatid]);
     setUserData("");
     setactiveChatid(chatid);
     setUserChatsLoading(true);
@@ -124,31 +163,27 @@ export const ChattingProvider = ({ children }) => {
     } else {
       setactiveArchive([...activeArchive, chatid]);
     }
-    return filterActivearchive
-      ? null
-      : getProductChats(chatid).then((response) => {
-          var findInc = madeLoop.find((x) => x === chatid);
-          // findInc ? null : setMadeloop([...madeLoop, chatid]);
+    return getProductChats(chatid).then((response) => {
+      // findInc ? null : setMadeloop([...madeLoop, chatid]);
+      var findInclude = ReturnChats.find((x) => x.id === chatid);
+      if (findInclude) {
+        var removeChat = ReturnChats.filter((x) => x.id !== chatid);
+        setReturnChats([
+          ...removeChat,
+          { id: response[0], content: response[1] },
+        ]);
+      } else {
+        setReturnChats([
+          ...ReturnChats,
+          { id: response[0], content: response[1] },
+        ]);
+      }
 
-          var findInclude = ReturnChats.find((x) => x.id === chatid);
-          if (findInclude) {
-            var removeChat = ReturnChats.filter((x) => x.id !== chatid);
-            setReturnChats([
-              ...removeChat,
-              { id: response[0], content: response[1] },
-            ]);
-          } else {
-            setReturnChats([
-              ...ReturnChats,
-              { id: response[0], content: response[1] },
-            ]);
-          }
-
-          setUserChatsLoading(false);
-          setTimeout(() => {
-            !findInc && PollMaker(chatid);
-          }, 1000);
-        });
+      setUserChatsLoading(false);
+      setTimeout(() => {
+        !findInc && PollMaker(chatid);
+      }, 1000);
+    });
   };
 
   const createFirstchat = (buyer, seller, adid, chatText) => {
@@ -164,11 +199,13 @@ export const ChattingProvider = ({ children }) => {
       ]);
       setNewchatid(response[1][0]);
       PollMaker(response[1][0]);
+      setMadeloop([...madeLoop, response[1][0]]);
     });
   };
 
   const CreateProductChat = (chatid, text, user) => {
-    CreateChatMessage(chatid, text, user);
+    var date = new Date().toString();
+    CreateChatMessage(chatid, text, user, date);
     var chatsMock = ReturnChats;
     var containingchat = chatsMock.find((x) => x.id === chatid);
 
@@ -177,7 +214,7 @@ export const ChattingProvider = ({ children }) => {
       ...containingchat.content,
       {
         chatid: chatid,
-        date: Date(),
+        date: date,
         id: containingchat.content.length + 55,
         text: text,
         userfrom: user,

@@ -48,7 +48,7 @@ export const CreateChatPool = (chatid) => {
 //   headers: { ACCEPT: "application/json", "content-Type": "application/json" },
 // }).then((response) => response.json());
 
-export const CreateChatMessage = (chatid, text, user) => {
+export const CreateChatMessage = (chatid, text, user, date) => {
   const options = {
     url: `${host}/createchat`,
     method: "POST",
@@ -59,6 +59,7 @@ export const CreateChatMessage = (chatid, text, user) => {
     data: {
       chatid: chatid,
       text: text,
+      date: date,
       user: user,
     },
   };
