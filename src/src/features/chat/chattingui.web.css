@@ -72,6 +72,8 @@ body {
   /* overflow-x: hidden; */
   transition: all 0.3s ease-out;
   width: 100%;
+  z-index: 0;
+  position: relative;
   padding: 10px;
   box-sizing: border-box;
   border-radius: 20px;
@@ -81,10 +83,6 @@ body {
 }
 .single-chat-archive:hover {
   background: rgba(128, 128, 128, 0.487);
-}
-.single-chat-archive:hover .chat-archive-more-option {
-  display: flex;
-  opacity: 1;
 }
 .single-chat-archive p {
   margin: 0;
@@ -106,14 +104,16 @@ body {
   min-width: 70px;
   margin-right: 10px;
 }
-.chat-archive-more-option {
-  display: none;
-  opacity: 0;
+.single-chat-archive:hover .chat-archive-more-option {
+  display: flex;
+  opacity: 1;
+}
+.chat-archive-more-option-icon:active {
+  background: rgb(83, 189, 88);
+}
+.chat-archive-more-option-icon {
   height: 30px;
   width: 30px;
-  /* position:absolute; */
-  transition: all 0.3s ease-out;
-  margin-left: -50px;
   min-height: 30px;
   min-width: 30px;
   background-size: contain;
@@ -122,5 +122,56 @@ body {
   border-radius: 50%;
   box-shadow: 0px 0px 5px #fff, 0px 0px 10px #fff, 0px 0px 15px #fff;
   /* background: red; */
+  transition: all 0.3s ease-out;
   background-image: url("https://www.pngrepo.com/png/124304/180/three-dots.png");
+}
+.chat-archive-more-option {
+  display: none;
+  opacity: 0;
+  right: 10px;
+  top: 25%;
+  position: absolute;
+  transition: all 0.3s ease-out;
+  z-index: 500;
+  margin-left: -50px;
+}
+.more-option-for-chatarchive {
+  display: none;
+  padding: 10px;
+  margin-top: -20px;
+  background: pink;
+  margin-right: 10px;
+  border-radius: 20px;
+}
+.more-options-chatarchive:hover {
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #000;
+  background: #fff;
+}
+.more-options-chatarchive {
+  margin: 5px;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  /* width: 94px; */
+}
+.It-can-be-ad-area {
+  height: 100%;
+  width: 100%;
+  background-image: url("https://cdn.pixabay.com/photo/2016/01/08/11/57/butterflies-1127666_960_720.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12rem;
+  -webkit-text-stroke-color: grey;
+  font-weight: bold;
+  /* background: inherit; */
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  /* filter: invert(1) grayscale(1); */
+  /* -webkit-filter: invert(1) grayscale(1); */
 }

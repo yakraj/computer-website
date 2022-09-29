@@ -81,13 +81,13 @@ export const ChatArchive = (props) => {
                   className="productimage"
                 />
                 <div className="chatproductinfo">
-                  <h3>{x.title.substring(0, 20)}</h3>
-                  <p>{x.lastchat.substring(0, 35)}</p>
+                  {/* <h3>{x.title.substring(0, 20)}</h3>
+                  <p>{x.lastchat.substring(0, 35)}</p> */}
                 </div>
               </div>
             </Link>
             <div className="rightsidearchive">
-              <p>{x.date.substring(0, 10)}</p>
+              {/* <p>{x.date.substring(0, 10)}</p> */}
               <img
                 onClick={() => chatdeleter(i)}
                 alt="threedots"

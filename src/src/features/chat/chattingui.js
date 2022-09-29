@@ -159,23 +159,25 @@ export const ChattingUI = () => {
     : [];
 
   const SingleChatArchive = ({ x, colour }) => {
+    const [visibleOption, onvisibleOption] = useState(false);
     return (
-      <div
-        onClick={() => {
-          onfakeChatArchive("");
-          x.chatid &&
-            getUserchatData(x.buyer === usercrd.username ? x.seller : x.buyer);
-          x.chatid && getUserschat(x.chatid);
-          x.chatid && onfindmychatid(x.chatid);
-          x.chatid && onseller(x.seller);
-          x.chatid && onbuyer(x.buyer);
-          x.chatid && onchatid(x.chatid);
-        }}
-        style={{ background: colour }}
-        className="single-chat-archive"
-      >
+      <div style={{ background: colour }} className="single-chat-archive">
         {/* it will have two div for icon/thumbnail and details */}
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div
+          onClick={() => {
+            onfakeChatArchive("");
+            x.chatid &&
+              getUserchatData(
+                x.buyer === usercrd.username ? x.seller : x.buyer
+              );
+            x.chatid && getUserschat(x.chatid);
+            x.chatid && onfindmychatid(x.chatid);
+            x.chatid && onseller(x.seller);
+            x.chatid && onbuyer(x.buyer);
+            x.chatid && onchatid(x.chatid);
+          }}
+          style={{ display: "flex", alignItems: "center" }}
+        >
           <div
             style={{
               backgroundImage: x.chatid
@@ -190,7 +192,37 @@ export const ChattingUI = () => {
             <p>{x.lastchat}</p>
           </div>
         </div>
-        <div className="chat-archive-more-option"></div>
+        <div className="chat-archive-more-option">
+          <div
+            style={{ display: visibleOption ? "block" : "none" }}
+            className="more-option-for-chatarchive"
+          >
+            <div
+              onClick={() => {
+                window.location.href = `./product/${x.productid}`;
+              }}
+              style={{
+                color: "#000",
+                textDecoration: "none",
+              }}
+              className="more-options-chatarchive"
+            >
+              View Product
+            </div>
+            <div
+              onClick={() => deleteChatArchive(x.chatid, usercrd.username)}
+              className="more-options-chatarchive"
+            >
+              Delete Chats
+            </div>
+          </div>
+          <div
+            onClick={() => {
+              onvisibleOption(!visibleOption);
+            }}
+            className="chat-archive-more-option-icon"
+          />
+        </div>
       </div>
     );
   };
@@ -234,7 +266,11 @@ export const ChattingUI = () => {
                   <SingleChatArchive
                     key={i}
                     x={x}
-                    //  colour="rgba(135, 207, 235, 0.542)"
+                    colour={
+                      x.chatid === findmychatid
+                        ? "rgba(135, 207, 235, 0.542)"
+                        : null
+                    }
                   />
                 );
               })}
@@ -247,20 +283,24 @@ export const ChattingUI = () => {
           </div>
         </div>
         <div className="right-side-messanging-container">
-          <ChattingUIChat
-            findInclude={findInclude}
-            chatid={chatid}
-            LastchatId={LastchatId}
-            createFirstchat={createFirstchat}
-            usercrd={usercrd}
-            seller={seller}
-            buyer={buyer}
-            adid={adid}
-            CreateProductChat={CreateProductChat}
-            loadingUserData={loadingUserData}
-            userData={userData}
-            Chats={FindMy ? FindMy.content : []}
-          />
+          {findmychatid ? (
+            <ChattingUIChat
+              findInclude={findInclude}
+              chatid={chatid}
+              LastchatId={LastchatId}
+              createFirstchat={createFirstchat}
+              usercrd={usercrd}
+              seller={seller}
+              buyer={buyer}
+              adid={adid}
+              CreateProductChat={CreateProductChat}
+              loadingUserData={loadingUserData}
+              userData={userData}
+              Chats={FindMy ? FindMy.content : []}
+            />
+          ) : (
+            <div className="It-can-be-ad-area">AD AREA</div>
+          )}
         </div>
       </div>
     </>
