@@ -157,7 +157,7 @@ export const RouterApp = () => {
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/" element={<Explore />} />
-          <Route path="/search" element={<SearchScreen />} />
+          {/* <Route path="/search" element={<SearchScreen />} /> */}
           <Route path="/product/:id" element={<ProductView />} />
           <Route path="/chatarchive" element={<ChatArchive />} />
           <Route path="/chattingui" element={<ChattingUI />} />
@@ -179,7 +179,7 @@ export const RouterApp = () => {
           <Route path="/create-account" element={<CreateAccount />} />
           <Route path="/verify-otp" element={<VerifyOTP />} />
           <Route path="/register-user" element={<RegisterUser />} />
-          <Route path="/search-result" element={<SearchResult />} />
+          <Route path="/search/:id" element={<SearchResult />} />
           <Route path="/product-screen" element={<ProductScreen />} />
           {/* <Route pat
 h="contact" element={ <Contact/> } /> */}

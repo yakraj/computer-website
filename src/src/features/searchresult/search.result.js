@@ -1,49 +1,52 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
-import { Topbar } from "../../components/global/topbar";
 import { SearchResultArchive } from "./search.result.archive";
 import "./searchresult.css";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { SearchContext } from "../../services/search.context";
 import { UserContext } from "../../services/user.contex";
+import { Topnav } from "../explore/topnav";
 export const SearchResult = () => {
-  const navigate = useNavigate();
-  const { lattitude, longitude, signedin } = useContext(UserContext);
+  const params = useParams();
+  // console.log(params.id);
+
+  const { lattitude, longitude, topNavHeight } = useContext(UserContext);
+
   const {
     searchKeyword,
     loadingAds,
     gottenAds,
     ReqAds,
-    data5km,
     setdata5km,
-    data10km,
     setdata10km,
-    data20km,
     setdata20km,
-    data50km,
     setdata50km,
-    in5km,
-    in10km,
-    in20km,
-    in50km,
-    Status,
     setStatus,
-    data5kmload,
-    data10kmload,
-    data20kmload,
-    data50kmload,
-    setdata5kmload,
-    setdata10kmload,
-    setdata20kmload,
-    setdata50kmload,
+    setin5km,
+    setin10km,
+    setin20km,
+    setin50km,
     ReqAgain,
   } = useContext(SearchContext);
 
   const ScrollEnd = useRef();
 
+  useEffect(() => {
+    setStatus([]);
+    setdata5km("");
+    setdata10km("");
+    setdata20km("");
+    setdata50km("");
+    setin5km([]);
+    setin10km([]);
+    setin20km([]);
+    setin50km([]);
+    ReqAds(params.id, lattitude, longitude, 5, 0);
+  }, []);
+
   const Kmwise = ({ data, dist }) => {
     return (
       <div className="Search-devide-basket">
-        <div style={{ position: "sticky", top: "0" }}>
+        <div style={{ position: "sticky", top: topNavHeight }}>
           <div className="searchresulttitle">
             <p>{dist} KM</p>
           </div>
@@ -136,64 +139,113 @@ export const SearchResult = () => {
       }
     });
   }, [gottenAds]);
-
   return (
-    <div style={{ marginBottom: "70px" }} className="search-result-container">
-      <div className="search-topbar">
-        <div className="searchbar-left">
-          <img
-            onClick={() => {
-              navigate(-1);
-            }}
-            className="blackwhite"
-            alt="return"
-            src={require("../../../assets/icon/back.png")}
-          />
-          <h4 onClick={() => navigate(-1)}>{searchKeyword}</h4>
-        </div>
-      </div>
-      <div style={{ height: "90vh", overflow: "auto" }} ref={ScrollEnd}>
-        {FiveK.length ||
-        TenK.length ||
-        TwentyK.length ||
-        FiftyK.length ||
-        HundredK.length ? (
-          // all scrollable data will be appear here
-          <>
-            {FiveK.length ? <Kmwise data={FiveK} dist={5} /> : null}
-            {TenK.length ? <Kmwise data={TenK} dist={10} /> : null}
-            {TwentyK.length ? <Kmwise data={TwentyK} dist={20} /> : null}
-            {FiftyK.length ? <Kmwise data={FiftyK} dist={50} /> : null}
-            {HundredK.length ? <Kmwise data={HundredK} dist={100} /> : null}
-          </>
-        ) : (
-          !loadingAds && (
-            // nothing found will appear here
-            <NullReport />
-          )
-        )}
-      </div>
-      {loadingAds && (
-        // if loading will appear here
+    <div
+      style={{ height: "100vh", overflow: "auto" }}
+      ref={ScrollEnd}
+      className="search-result-container"
+    >
+      <Topnav />
+      <div
+        style={{
+          height: "30vh",
+          backgroundImage:
+            "url(https://thumbs.dreamstime.com/b/header-world-wide-e-commerce-movement-4410867.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          width: "100%",
+        }}
+        className="search-header-banner"
+      ></div>
+      <div
+        style={{
+          padding: "10px",
+          fontSize: "1.2rem",
+          fontWeight: "bold",
+          color: "grey",
+          borderBottom: "5px solid grey",
+          textTransform: "capitalize",
+        }}
+        className="search-result-text-title"
+      >{`Results for : ${params.id}`}</div>
+      {/* searchresults will be saperated into two parts */}
+      <div
+        style={{ display: "flex", width: "100%" }}
+        className="search-result-container"
+      >
         <div
           style={{
-            height: "100%",
-            width: "100%",
+            width: "30%",
+            borderRight: "1px solid grey",
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
-            position: "absolute",
-            top: 0,
-            left: 0,
+            padding: "10px",
+            boxSizing: "border-box",
           }}
+          className="search-result-left-container"
         >
-          <img
-            width="80px"
-            alt="last loading"
-            src={require("../../../assets/loading.gif")}
+          <div
+            style={{
+              position: "sticky",
+              top: topNavHeight,
+              height: "680px",
+              width: "90%",
+              background: "rgb(255, 255, 255)",
+              boxShadow: "grey 0px 0px 5px, pink 0px 0px 5px inset",
+              margin: "5px",
+              borderRadius: "30px",
+              backgroundImage:
+                "url(https://fs.easybanners.com/Templates/3426/TemplateIcon/3426.png)",
+              backgroundSize: "cover",
+              backgroundPosition: "top center",
+            }}
           />
         </div>
-      )}
+        <div style={{ width: "70%" }} className="search-result-right-container">
+          <div>
+            {FiveK.length ||
+            TenK.length ||
+            TwentyK.length ||
+            FiftyK.length ||
+            HundredK.length ? (
+              // all scrollable data will be appear here
+              <>
+                {FiveK.length ? <Kmwise data={FiveK} dist={5} /> : null}
+                {TenK.length ? <Kmwise data={TenK} dist={10} /> : null}
+                {TwentyK.length ? <Kmwise data={TwentyK} dist={20} /> : null}
+                {FiftyK.length ? <Kmwise data={FiftyK} dist={50} /> : null}
+                {HundredK.length ? <Kmwise data={HundredK} dist={100} /> : null}
+              </>
+            ) : (
+              !loadingAds && (
+                // nothing found will appear here
+                <NullReport />
+              )
+            )}
+          </div>
+          {loadingAds && gottenAds.length < 1 && (
+            // if loading will appear here
+            <div
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "absolute",
+                top: 0,
+                left: 0,
+              }}
+            >
+              <img
+                width="80px"
+                alt="last loading"
+                src={require("../../../assets/loading.gif")}
+              />
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

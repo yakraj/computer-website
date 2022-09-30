@@ -24,7 +24,7 @@ export const SearchResultArchive = ({ x }) => {
         className="search-result-image"
         style={{
           backgroundImage: `url(https://storage.googleapis.com/post-thumbnail/${x.thumbnail})`,
-          height: "200px",
+          height: "250px",
           width: "100%",
           backgroundSize: "cover",
           backgroundPosition: "center center",
@@ -53,7 +53,7 @@ export const SearchResultArchive = ({ x }) => {
             style={{
               marginLeft: "5px",
               textTransform: "capitalize",
-              width: "50%",
+              width: "100%",
             }}
           >
             {x.address}
